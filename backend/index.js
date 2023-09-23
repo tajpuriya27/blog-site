@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
+const config = require("./utils/config");
 
 app.get("/", (req, res) => {
   res.send("Response by backend");
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(config.PORT, () => {
+  console.log(`Server running on port ${config.PORT}`);
 });
