@@ -6,9 +6,22 @@ const jwt = require("jsonwebtoken");
 const { tokenExtractor, userExtractor } = require("../utils/middleware");
 
 blogsRouter.get("/", async (req, res) => {
-  const blogs = await Blog.find({})
-    .populate("user", { id: 1 })
-    .populate("comments", { comment: 1 });
+  const blogs = await Blog.find()
+    .populate({
+      path: "user",
+      model: User,
+      select: "username id",
+    })
+    .populate({
+      path: "comments",
+      model: Comment,
+      select: "-blog -id",
+      populate: {
+        path: "user",
+        model: User,
+        select: "username",
+      },
+    });
   res.json(blogs);
 });
 
@@ -18,6 +31,7 @@ blogsRouter.post("/", tokenExtractor, userExtractor, async (req, res, next) => {
     console.log(user);
     const blog = new Blog({
       title: req.body.title,
+      content: req.body.content,
       author: req.body.author,
       url: req.body.url,
       likes: req.body.likes || 0,

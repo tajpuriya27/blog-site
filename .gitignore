@@ -1,5 +1,6 @@
 # Ignore the following files
 .env
+*.rest
 
 # Ignore the following directories:
 node_modules/
