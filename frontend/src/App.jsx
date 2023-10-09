@@ -6,6 +6,7 @@ import "./main.css";
 import BlogForm from "./components/BlogForm";
 import LoginPage from "./components/Login";
 import Navbar from "./components/NavBar";
+import RegisterPage from "./components/Register";
 
 const App = () => {
   const loggedIn = useSelector((state) => state.user);
@@ -27,6 +28,7 @@ const App = () => {
       <Navbar />
       {isLoggedIn && <BlogForm />}
       {!isLoggedIn && <LoginPage />}
+      {!isLoggedIn && <RegisterPage />}
 
       {blogs.map((blog) => (
         <div key={blog.id} className="blog-class">

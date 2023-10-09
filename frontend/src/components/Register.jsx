@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { loginUsr } from "../services/loginRequest";
-import { useDispatch } from "react-redux";
-import { setUser } from "../reducers/userReducer";
+import { createUsr } from "../services/loginRequest";
 
-const LoginPage = () => {
-  const [usrInput, setUsrInput] = useState({ username: "", password: "" });
-  const dispatch = useDispatch();
+const RegisterPage = () => {
+  const [usrInput, setUsrInput] = useState({
+    username: "",
+    name: "",
+    password: "",
+  });
+  //   const dispatch = useDispatch();
 
   const handleFormChange = (e) => {
     let myObj = {};
@@ -13,11 +15,11 @@ const LoginPage = () => {
     setUsrInput({ ...usrInput, ...myObj });
   };
 
-  const handleLogin = () => {
-    loginUsr(usrInput).then((res) => {
-      dispatch(setUser(res));
+  const handleCreateUsr = () => {
+    createUsr(usrInput).then((res) => {
+      console.log("User Created!!", res);
     });
-    setUsrInput({ username: "", password: "" });
+    setUsrInput({ username: "", name: "", password: "" });
   };
 
   return (
@@ -31,7 +33,7 @@ const LoginPage = () => {
                 style={{ borderRadius: "1rem" }}
               >
                 <div className="card-body p-5 text-center">
-                  <h3 className="mb-5">Sign in</h3>
+                  <h3 className="mb-5">Sign Up</h3>
                   <div className="form-outline mb-4">
                     <input
                       type="text"
@@ -47,6 +49,19 @@ const LoginPage = () => {
                   </div>
                   <div className="form-outline mb-4">
                     <input
+                      type="text"
+                      id="typeEmailX-2"
+                      className="form-control form-control-lg"
+                      onChange={handleFormChange}
+                      name="name"
+                      value={usrInput.name}
+                    />
+                    <label className="form-label" htmlFor="typeEmailX-2">
+                      Name
+                    </label>
+                  </div>
+                  <div className="form-outline mb-4">
+                    <input
                       type="password"
                       id="typePasswordX-2"
                       className="form-control form-control-lg"
@@ -58,26 +73,15 @@ const LoginPage = () => {
                       Password
                     </label>
                   </div>
-                  <div className="form-check d-flex justify-content-start mb-4">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="form1Example3"
-                    />
-                    <label className="form-check-label" htmlFor="form1Example3">
-                      Remember password
-                    </label>
-                  </div>
                   <button
                     className="btn btn-primary btn-lg btn-block"
                     type="submit"
-                    onClick={handleLogin}
+                    onClick={handleCreateUsr}
                   >
-                    Login
+                    Register
                   </button>
                   <br />
-                  Have no account? <a href="#">Register</a>
+                  Already have an account? <a href="#">Login</a>
                 </div>
               </div>
             </div>
@@ -88,4 +92,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
