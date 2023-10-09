@@ -1,4 +1,25 @@
+import { useState } from "react";
+import { loginUsr } from "../services/loginRequest";
+import { useDispatch } from "react-redux";
+import { setUser } from "../reducers/userReducer";
+
 const LoginPage = () => {
+  const [usrInput, setUsrInput] = useState({ username: "", password: "" });
+  const dispatch = useDispatch();
+
+  const handleFormChange = (e) => {
+    let myObj = {};
+    myObj[e.target.name] = e.target.value;
+    setUsrInput({ ...usrInput, ...myObj });
+  };
+
+  const handleLogin = () => {
+    loginUsr(usrInput).then((res) => {
+      dispatch(setUser(res));
+    });
+    setUsrInput({ username: "", password: "" });
+  };
+
   return (
     <>
       <section className="vh-100" style={{ backgroundColor: "#508bfc" }}>
@@ -11,12 +32,14 @@ const LoginPage = () => {
               >
                 <div className="card-body p-5 text-center">
                   <h3 className="mb-5">Sign in</h3>
-
                   <div className="form-outline mb-4">
                     <input
                       type="text"
                       id="typeEmailX-2"
                       className="form-control form-control-lg"
+                      onChange={handleFormChange}
+                      name="username"
+                      value={usrInput.username}
                     />
                     <label className="form-label" htmlFor="typeEmailX-2">
                       Username
@@ -28,6 +51,9 @@ const LoginPage = () => {
                       type="password"
                       id="typePasswordX-2"
                       className="form-control form-control-lg"
+                      onChange={handleFormChange}
+                      name="password"
+                      value={usrInput.password}
                     />
                     <label className="form-label" htmlFor="typePasswordX-2">
                       Password
@@ -49,6 +75,7 @@ const LoginPage = () => {
                   <button
                     className="btn btn-primary btn-lg btn-block"
                     type="submit"
+                    onClick={handleLogin}
                   >
                     Login
                   </button>

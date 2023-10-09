@@ -1,4 +1,4 @@
-import { getBlogs } from "./services/request";
+import { getBlogs } from "./services/blogRequest";
 import { useQuery } from "@tanstack/react-query";
 import "./main.css";
 
@@ -18,8 +18,8 @@ const App = () => {
 
   return (
     <>
-      {/* <h1>BlogSite</h1> */}
-      {/* <BlogForm /> */}
+      <h1>BlogSite</h1>
+      <BlogForm />
       <LoginPage />
       {/* 
       {blogs.map((blog) => (

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createBlog } from "../services/request";
+import { createBlog } from "../services/blogRequest";
 import { useState } from "react";
 
 const BlogForm = () => {
