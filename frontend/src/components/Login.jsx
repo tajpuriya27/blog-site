@@ -14,7 +14,7 @@ const LoginPage = () => {
 
                   <div className="form-outline mb-4">
                     <input
-                      type="email"
+                      type="text"
                       id="typeEmailX-2"
                       className="form-control form-control-lg"
                     />
