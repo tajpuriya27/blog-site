@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createUsr } from "../services/loginRequest";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const [usrInput, setUsrInput] = useState({
@@ -81,7 +82,7 @@ const RegisterPage = () => {
                     Register
                   </button>
                   <br />
-                  Already have an account? <a href="#">Login</a>
+                  Already have an account?<a href="/login">login</a>
                 </div>
               </div>
             </div>

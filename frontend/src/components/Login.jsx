@@ -2,8 +2,10 @@ import { useState } from "react";
 import { loginUsr } from "../services/loginRequest";
 import { useDispatch } from "react-redux";
 import { setUser } from "../reducers/userReducer";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [usrInput, setUsrInput] = useState({ username: "", password: "" });
   const dispatch = useDispatch();
 
@@ -18,6 +20,7 @@ const LoginPage = () => {
       dispatch(setUser(res));
     });
     setUsrInput({ username: "", password: "" });
+    navigate("/");
   };
 
   return (
@@ -77,7 +80,7 @@ const LoginPage = () => {
                     Login
                   </button>
                   <br />
-                  Have no account? <a href="#">Register</a>
+                  Have no account? <a href="/register">Register</a>
                 </div>
               </div>
             </div>

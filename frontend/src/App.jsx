@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import "./main.css";
 
-import BlogForm from "./components/BlogForm";
 import LoginPage from "./components/Login";
 import Navbar from "./components/NavBar";
 import RegisterPage from "./components/Register";
@@ -18,8 +17,9 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/features" element={<LoginPage />} />
         <Route path="/about" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </>
   );
