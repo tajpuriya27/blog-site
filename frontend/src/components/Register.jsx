@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { createUsr } from "../services/loginRequest";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [usrInput, setUsrInput] = useState({
     username: "",
     name: "",
@@ -21,6 +22,7 @@ const RegisterPage = () => {
       console.log("User Created!!", res);
     });
     setUsrInput({ username: "", name: "", password: "" });
+    navigate("/login");
   };
 
   return (

@@ -41,6 +41,11 @@ const Navbar = () => {
                 </Link>
               )}
               {isLoggedIn && (
+                <Link className="nav-link" to="/addblog">
+                  Add Blog
+                </Link>
+              )}
+              {isLoggedIn && (
                 <Link className="nav-link">{loggedIn.username} LoggedIn</Link>
               )}
             </div>
