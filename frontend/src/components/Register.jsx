@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createUsr } from "../services/loginRequest";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -9,7 +10,8 @@ const RegisterPage = () => {
     name: "",
     password: "",
   });
-  //   const dispatch = useDispatch();
+
+  const notify = () => toast.success("User Created! Proceed to Log In");
 
   const handleFormChange = (e) => {
     let myObj = {};
@@ -23,6 +25,7 @@ const RegisterPage = () => {
     });
     setUsrInput({ username: "", name: "", password: "" });
     navigate("/login");
+    notify();
   };
 
   return (

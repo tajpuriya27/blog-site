@@ -3,11 +3,14 @@ import { loginUsr } from "../services/loginRequest";
 import { useDispatch } from "react-redux";
 import { setUser } from "../reducers/userReducer";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [usrInput, setUsrInput] = useState({ username: "", password: "" });
   const dispatch = useDispatch();
+
+  const notify = (uName) => toast.success(`${uName} Logged In`);
 
   const handleFormChange = (e) => {
     let myObj = {};
@@ -18,6 +21,7 @@ const LoginPage = () => {
   const handleLogin = () => {
     loginUsr(usrInput).then((res) => {
       dispatch(setUser(res));
+      notify(res.username);
     });
     setUsrInput({ username: "", password: "" });
     navigate("/");
@@ -34,7 +38,7 @@ const LoginPage = () => {
                 style={{ borderRadius: "1rem" }}
               >
                 <div className="card-body p-5 text-center">
-                  <h3 className="mb-5">Sign in</h3>
+                  <h3 className="mb-5">Log in</h3>
                   <div className="form-outline mb-4">
                     <input
                       type="text"
